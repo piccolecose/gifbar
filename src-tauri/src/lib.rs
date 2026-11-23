@@ -9,6 +9,17 @@ use tauri_plugin_updater::UpdaterExt;
 
 mod clipboard;
 
+fn toggle_main_window(app: &tauri::AppHandle) {
+    if let Some(window) = app.get_webview_window("main") {
+        if window.is_visible().unwrap_or(false) {
+            let _ = window.hide();
+        } else {
+            let _ = window.show();
+            let _ = window.set_focus();
+        }
+    }
+}
+
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
@@ -27,11 +38,14 @@ pub fn run() {
             }
 
             // Build the right-click context menu
+            let toggle = MenuItemBuilder::new("Open GifBar")
+                .id("toggle")
+                .build(app)?;
             let quit = MenuItemBuilder::new("Quit GifBar")
                 .id("quit")
                 .build(app)?;
 
-            let menu = MenuBuilder::new(app).item(&quit).build()?;
+            let menu = MenuBuilder::new(app).item(&toggle).item(&quit).build()?;
 
             // Build the tray icon using the icon embedded at compile time
             let tray_icon = Image::from_bytes(include_bytes!("../icons/tray-icon.png"))?;
@@ -41,6 +55,7 @@ pub fn run() {
                 .menu(&menu)
                 .show_menu_on_left_click(false)
                 .on_menu_event(|app, event| match event.id().as_ref() {
+                    "toggle" => toggle_main_window(app),
                     "quit" => {
                         app.exit(0);
                     }
@@ -53,15 +68,7 @@ pub fn run() {
                         ..
                     } = event
                     {
-                        let app = tray.app_handle();
-                        if let Some(window) = app.get_webview_window("main") {
-                            if window.is_visible().unwrap_or(false) {
-                                let _ = window.hide();
-                            } else {
-                                let _ = window.show();
-                                let _ = window.set_focus();
-                            }
-                        }
+                        toggle_main_window(tray.app_handle());
                     }
                 })
                 .build(app)?;
