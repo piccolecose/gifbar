@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.3.2](https://github.com/piccolecose/gifbar/compare/v2.3.1...v2.3.2) (2026-11-23)
+
+
+### Bug Fixes
+
+* **tray:** add Open GifBar menu item so Linux can open the window ([#314](https://github.com/piccolecose/gifbar/issues/314)) ([4dd73e7](https://github.com/piccolecose/gifbar/commit/4dd73e7a5a15fdcf051538534239b7bf16c5b8dd)), closes [#313](https://github.com/piccolecose/gifbar/issues/313)
+
 ## [2.3.1](https://github.com/piccolecose/gifbar/compare/v2.3.0...v2.3.1) (2026-11-19)
 
 
