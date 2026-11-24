@@ -24,8 +24,7 @@ function normalizeGiphy(gif) {
 }
 
 function normalizeTenor(gif) {
-  const preview =
-    gif.media_formats?.tinygif?.url || gif.media_formats?.gif?.url || "";
+  const preview = gif.media_formats?.tinygif?.url || gif.media_formats?.gif?.url || "";
   return {
     id: `tenor-${gif.id}`,
     title: gif.content_description || "",
@@ -87,15 +86,10 @@ async function gather(tasks) {
   const settled = await Promise.allSettled(tasks);
   settled.forEach((r, i) => {
     if (r.status === "rejected") {
-      console.error(
-        `${names[i]} request failed:`,
-        r.reason?.message ?? r.reason,
-      );
+      console.error(`${names[i]} request failed:`, r.reason?.message ?? r.reason);
     }
   });
-  const [giphy, tenor] = settled.map((r) =>
-    r.status === "fulfilled" ? r.value : [],
-  );
+  const [giphy, tenor] = settled.map((r) => (r.status === "fulfilled" ? r.value : []));
   if (settled.every((r) => r.status === "rejected")) {
     throw settled[0].reason;
   }

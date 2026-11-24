@@ -1,3 +1,9 @@
 {
-  "ignorePatterns": ["CHANGELOG.md", "package-lock.json", "src-tauri/gen", "worker/.wrangler", "coverage"]
+  "ignorePatterns": [
+    "CHANGELOG.md",
+    "package-lock.json",
+    "src-tauri/gen",
+    "worker/.wrangler",
+    "coverage"
+  ]
 }

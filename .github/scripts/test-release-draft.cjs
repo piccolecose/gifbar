@@ -3,12 +3,7 @@ const assert = require("node:assert/strict");
 const findDraft = require("./find-release-draft.cjs");
 
 const sha = "e".repeat(40);
-const draft = {
-  id: 123,
-  draft: true,
-  tag_name: "v2.3.0",
-  target_commitish: sha,
-};
+const draft = { id: 123, draft: true, tag_name: "v2.3.0", target_commitish: sha };
 
 async function resolve(releases) {
   const outputs = {};
@@ -19,11 +14,7 @@ async function resolve(releases) {
       rest: { repos: { listReleases: "listReleases" } },
       paginate: async (endpoint, options) => {
         assert.equal(endpoint, "listReleases");
-        assert.deepEqual(options, {
-          owner: "example",
-          repo: "gifbar",
-          per_page: 100,
-        });
+        assert.deepEqual(options, { owner: "example", repo: "gifbar", per_page: 100 });
         return releases;
       },
     },
@@ -55,8 +46,5 @@ test("allows release-please to proceed when no matching draft exists", async () 
 });
 
 test("refuses a draft targeting a moving branch", async () => {
-  await assert.rejects(
-    resolve([{ ...draft, target_commitish: "master" }]),
-    /exact commit SHA/,
-  );
+  await assert.rejects(resolve([{ ...draft, target_commitish: "master" }]), /exact commit SHA/);
 });

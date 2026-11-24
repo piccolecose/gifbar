@@ -42,9 +42,7 @@ describe("App", () => {
     trending.mockRejectedValue(new Error("down"));
     render(App);
 
-    expect(
-      await screen.findByText(/Couldn't reach the GIF service/),
-    ).toBeInTheDocument();
+    expect(await screen.findByText(/Couldn't reach the GIF service/)).toBeInTheDocument();
   });
 
   it("shows the empty state when there are no results", async () => {
@@ -76,11 +74,8 @@ describe("App", () => {
     await fireEvent.click(await screen.findByRole("img"));
     expect(await screen.findByText("Copied!")).toBeInTheDocument();
 
-    await waitFor(
-      () => expect(screen.queryByText("Copied!")).not.toBeInTheDocument(),
-      {
-        timeout: 2500,
-      },
-    );
+    await waitFor(() => expect(screen.queryByText("Copied!")).not.toBeInTheDocument(), {
+      timeout: 2500,
+    });
   });
 });
