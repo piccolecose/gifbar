@@ -4,6 +4,7 @@
     "package-lock.json",
     "src-tauri/gen",
     "worker/.wrangler",
-    "coverage"
+    "coverage",
+    ".betterleaks.toml"
   ]
 }
