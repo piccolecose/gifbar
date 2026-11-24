@@ -1,0 +1,10 @@
+node_modules
+dist
+coverage
+src-tauri/target
+src-tauri/gen
+CHANGELOG.md
+package-lock.json
+worker/package-lock.json
+worker/node_modules
+worker/.wrangler

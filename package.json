@@ -15,7 +15,10 @@
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
-    "tauri": "tauri"
+    "tauri": "tauri",
+    "lint": "oxlint",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "dependencies": {
     "@tauri-apps/api": "^2.11.1",
@@ -28,7 +31,11 @@
     "@tauri-apps/cli": "^2.12.4",
     "@testing-library/jest-dom": "^7.0.1",
     "@testing-library/svelte": "^5.4.2",
+    "@vitest/coverage-v8": "^5.1.1",
     "jsdom": "^31.0.1",
+    "oxlint": "^1.95.0",
+    "prettier": "^3.10.1",
+    "prettier-plugin-svelte": "^4.2.0",
     "svelte": "^5.57.3",
     "vite": "^8.3.8",
     "vitest": "^5.1.0"
