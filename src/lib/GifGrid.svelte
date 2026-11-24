@@ -57,7 +57,9 @@
     cursor: pointer;
     background: #16213e;
     padding: 0;
-    transition: border-color 0.2s, transform 0.15s;
+    transition:
+      border-color 0.2s,
+      transform 0.15s;
     aspect-ratio: 1;
   }
 

@@ -51,9 +51,7 @@
     <GifGrid {gifs} {copiedId} oncopied={handleCopied} />
   {/if}
 
-  <footer class="attribution">
-    Powered by GIPHY & Tenor
-  </footer>
+  <footer class="attribution">Powered by GIPHY & Tenor</footer>
 </div>
 
 <style>

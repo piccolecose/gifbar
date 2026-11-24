@@ -99,6 +99,7 @@ npm run tauri build
 ```
 
 This produces platform-specific installers:
+
 - **macOS**: `.dmg` in `src-tauri/target/release/bundle/dmg/`
 - **Windows**: `.exe` installer in `src-tauri/target/release/bundle/nsis/`
 - **Linux**: `.deb` and `.AppImage` in `src-tauri/target/release/bundle/`
@@ -129,12 +130,12 @@ another version bump. Older abandoned drafts are not automatically published.
 
 Required GitHub Actions configuration:
 
-| Name | Kind | Purpose |
-| --- | --- | --- |
-| `TAURI_SIGNING_PRIVATE_KEY` | secret | signs updater artifacts (`npx tauri signer generate`) |
-| `TAURI_SIGNING_PRIVATE_KEY_PASSWORD` | secret | password for the above |
-| `CLOUDFLARE_API_TOKEN` | secret | deploys the GIF proxy Worker |
-| `VITE_GIF_API_BASE` | variable | URL of the Worker — only if it is not the default |
+| Name                                 | Kind     | Purpose                                               |
+| ------------------------------------ | -------- | ----------------------------------------------------- |
+| `TAURI_SIGNING_PRIVATE_KEY`          | secret   | signs updater artifacts (`npx tauri signer generate`) |
+| `TAURI_SIGNING_PRIVATE_KEY_PASSWORD` | secret   | password for the above                                |
+| `CLOUDFLARE_API_TOKEN`               | secret   | deploys the GIF proxy Worker                          |
+| `VITE_GIF_API_BASE`                  | variable | URL of the Worker — only if it is not the default     |
 
 Note that CI itself needs **no** secrets, which is what keeps Dependabot's
 builds green — Dependabot events get an empty secrets context.

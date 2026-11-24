@@ -46,13 +46,7 @@
       "icons/icon.ico"
     ],
     "createUpdaterArtifacts": false,
-    "targets": [
-      "dmg",
-      "app",
-      "deb",
-      "appimage",
-      "nsis"
-    ],
+    "targets": ["dmg", "app", "deb", "appimage", "nsis"],
     "macOS": {
       "minimumSystemVersion": "10.15",
       "signingIdentity": "-"
@@ -65,10 +59,7 @@
     },
     "linux": {
       "deb": {
-        "depends": [
-          "libwebkit2gtk-4.1-0",
-          "libgtk-3-0"
-        ]
+        "depends": ["libwebkit2gtk-4.1-0", "libgtk-3-0"]
       }
     }
   }

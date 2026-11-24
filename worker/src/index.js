@@ -87,7 +87,10 @@ async function gather(tasks) {
   const settled = await Promise.allSettled(tasks);
   settled.forEach((r, i) => {
     if (r.status === "rejected") {
-      console.error(`${names[i]} request failed:`, r.reason?.message ?? r.reason);
+      console.error(
+        `${names[i]} request failed:`,
+        r.reason?.message ?? r.reason,
+      );
     }
   });
   const [giphy, tenor] = settled.map((r) =>

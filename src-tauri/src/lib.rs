@@ -41,9 +41,7 @@ pub fn run() {
             let toggle = MenuItemBuilder::new("Open GifBar")
                 .id("toggle")
                 .build(app)?;
-            let quit = MenuItemBuilder::new("Quit GifBar")
-                .id("quit")
-                .build(app)?;
+            let quit = MenuItemBuilder::new("Quit GifBar").id("quit").build(app)?;
 
             let menu = MenuBuilder::new(app).item(&toggle).item(&quit).build()?;
 

@@ -1,7 +1,10 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import app from "./index.js";
 
-const env = { GIPHY_API_KEY: "giphy-test-key", TENOR_API_KEY: "tenor-test-key" };
+const env = {
+  GIPHY_API_KEY: "giphy-test-key",
+  TENOR_API_KEY: "tenor-test-key",
+};
 
 const giphyBody = {
   data: [
@@ -98,7 +101,9 @@ describe("gif proxy worker", () => {
 
   it("still returns results when one provider fails", async () => {
     routeFetch((href) =>
-      href.includes("giphy") ? new Response("nope", { status: 429 }) : tenorBody,
+      href.includes("giphy")
+        ? new Response("nope", { status: 429 })
+        : tenorBody,
     );
 
     const res = await app.request("/trending", {}, env);
@@ -139,10 +144,17 @@ describe("gif proxy worker", () => {
   });
 
   it("reports which provider keys are configured on /health", async () => {
-    const res = await app.request("/health", {}, { GIPHY_API_KEY: "giphy-test-key" });
+    const res = await app.request(
+      "/health",
+      {},
+      { GIPHY_API_KEY: "giphy-test-key" },
+    );
     const body = await res.json();
 
-    expect(body).toEqual({ ok: true, providers: { giphy: true, tenor: false } });
+    expect(body).toEqual({
+      ok: true,
+      providers: { giphy: true, tenor: false },
+    });
     // A missing key must be visible without reading logs — that is the whole
     // point — but the key itself must never be.
     expect(JSON.stringify(body)).not.toContain("giphy-test-key");
