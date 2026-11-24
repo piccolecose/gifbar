@@ -13,6 +13,13 @@ export default defineConfig({
     exclude: ["**/node_modules/**", "worker/**"],
     globals: true,
     setupFiles: ["./src/test-setup.js"],
+    coverage: {
+      provider: "v8",
+      reporter: ["text", "json-summary"],
+      include: ["src/**/*.{js,svelte}"],
+      exclude: ["src/**/*.test.js", "src/test-setup.js"],
+      thresholds: { lines: 75 },
+    },
     env: {
       VITE_GIF_API_BASE: "https://gif-api.test",
     },
