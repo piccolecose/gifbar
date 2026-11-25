@@ -86,12 +86,8 @@ describe("gif proxy worker", () => {
     const body = await res.text();
 
     const urls = fetch.mock.calls.map((c) => c[0].toString());
-    expect(urls.find((u) => u.includes("giphy"))).toContain(
-      "api_key=giphy-test-key",
-    );
-    expect(urls.find((u) => u.includes("tenor"))).toContain(
-      "key=tenor-test-key",
-    );
+    expect(urls.find((u) => u.includes("giphy"))).toContain("api_key=giphy-test-key");
+    expect(urls.find((u) => u.includes("tenor"))).toContain("key=tenor-test-key");
     expect(body).not.toContain("giphy-test-key");
     expect(body).not.toContain("tenor-test-key");
   });
@@ -151,11 +147,7 @@ describe("gif proxy worker", () => {
   it("skips a provider whose key is not configured", async () => {
     bothProvidersOk();
 
-    const res = await app.request(
-      "/trending",
-      {},
-      { TENOR_API_KEY: "tenor-test-key" },
-    );
+    const res = await app.request("/trending", {}, { TENOR_API_KEY: "tenor-test-key" });
     const { gifs } = await res.json();
 
     expect(fetch).toHaveBeenCalledTimes(1);

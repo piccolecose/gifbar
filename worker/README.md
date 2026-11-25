@@ -21,11 +21,11 @@ Moving the calls here fixes that, and buys three other things:
 
 ## Endpoints
 
-| Route | Purpose |
-| --- | --- |
-| `GET /trending?limit=20` | Trending GIFs, interleaved from both providers |
-| `GET /search?q=cats&limit=20` | Search; a blank `q` falls back to trending |
-| `GET /health` | Returns `{"ok":true}` — the release workflow gates on this |
+| Route                         | Purpose                                                    |
+| ----------------------------- | ---------------------------------------------------------- |
+| `GET /trending?limit=20`      | Trending GIFs, interleaved from both providers             |
+| `GET /search?q=cats&limit=20` | Search; a blank `q` falls back to trending                 |
+| `GET /health`                 | Returns `{"ok":true}` — the release workflow gates on this |
 
 All return `{ "gifs": [{ id, title, preview, original, source }] }`.
 
@@ -40,8 +40,8 @@ touching `worker/**`, and can be run by hand from the Actions tab
 
 It needs one repository secret:
 
-| Secret | How to get it |
-| --- | --- |
+| Secret                 | How to get it                                                                                            |
+| ---------------------- | -------------------------------------------------------------------------------------------------------- |
 | `CLOUDFLARE_API_TOKEN` | Cloudflare dashboard -> My Profile -> API Tokens -> Create Token -> **Edit Cloudflare Workers** template |
 
 ### The provider keys

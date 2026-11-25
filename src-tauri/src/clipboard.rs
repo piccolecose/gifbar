@@ -41,11 +41,11 @@ pub enum ClipboardError {
 /// webview, so without this the command would fetch anything a compromised
 /// page asked it to — including loopback and LAN addresses the app can reach
 /// but the network cannot.
-const ALLOWED_HOST_SUFFIXES: [&str; 4] = ["giphy.com", "tenor.com", "googleapis.com", "gstatic.com"];
+const ALLOWED_HOST_SUFFIXES: [&str; 4] =
+    ["giphy.com", "tenor.com", "googleapis.com", "gstatic.com"];
 
 fn check_url(url: &str) -> Result<(), ClipboardError> {
-    let parsed =
-        url::Url::parse(url).map_err(|_| ClipboardError::UntrustedUrl(url.to_string()))?;
+    let parsed = url::Url::parse(url).map_err(|_| ClipboardError::UntrustedUrl(url.to_string()))?;
     if parsed.scheme() != "https" {
         return Err(ClipboardError::UntrustedUrl(url.to_string()));
     }
@@ -220,7 +220,7 @@ mod platform {
         let bytes = std::fs::read(path)?;
 
         autoreleasepool(|_| {
-            let pb = unsafe { NSPasteboard::generalPasteboard() };
+            let pb = NSPasteboard::generalPasteboard();
 
             // declareTypes + setData/setString throughout, rather than mixing
             // in writeObjects: the two address different item models, and
@@ -239,25 +239,26 @@ mod platform {
             // File URL. Teams and Slack look for a file on the pasteboard and
             // attach it, which is the path that keeps the GIF animated.
             let path_str = NSString::from_str(&path.to_string_lossy());
-            let file_url = unsafe { NSURL::fileURLWithPath(&path_str) };
-            let abs = unsafe { file_url.absoluteString() }
+            let file_url = NSURL::fileURLWithPath(&path_str);
+            let abs = file_url
+                .absoluteString()
                 .ok_or_else(|| ClipboardError::Clipboard("file URL had no string form".into()))?;
-            unsafe { pb.setString_forType(&abs, file_url_ty) };
+            pb.setString_forType(&abs, file_url_ty);
 
             // Raw GIF bytes, for apps that read image data directly and can
             // cope with an animated one.
             let data = NSData::with_bytes(&bytes);
-            unsafe { pb.setData_forType(Some(&data), &gif_ty) };
+            pb.setData_forType(Some(&data), &gif_ty);
 
             // HTML for rich-text targets (mail, docs) — they fetch the remote
             // GIF and render it animated.
             let html = NSString::from_str(&super::html_snippet(url));
-            unsafe { pb.setString_forType(&html, html_ty) };
+            pb.setString_forType(&html, html_ty);
 
             // Plain text last: the universal fallback, and what a code editor
             // or terminal will take.
             let text = NSString::from_str(url);
-            unsafe { pb.setString_forType(&text, string_ty) };
+            pb.setString_forType(&text, string_ty);
 
             Ok(())
         })
@@ -306,7 +307,8 @@ mod platform {
         // offer what it holds. HTML plus the URL is what it supports; the
         // downloaded file still exists on disk for the user to attach.
         let _ = path;
-        let mut cb = arboard::Clipboard::new().map_err(|e| ClipboardError::Clipboard(e.to_string()))?;
+        let mut cb =
+            arboard::Clipboard::new().map_err(|e| ClipboardError::Clipboard(e.to_string()))?;
         cb.set_html(super::html_snippet(url), Some(url.to_string()))
             .map_err(|e| ClipboardError::Clipboard(e.to_string()))?;
         Ok(())
@@ -350,9 +352,9 @@ mod tests {
     fn does_not_follow_a_redirect_off_the_allowlist() {
         // A redirect to loopback must not be followed even though the first
         // request was allowed through.
-        let base = serve(vec![format!(
-            "HTTP/1.1 302 Found\r\nLocation: http://127.0.0.1:1/secret\r\nContent-Length: 0\r\n\r\n"
-        )]);
+        let base = serve(vec![
+            "HTTP/1.1 302 Found\r\nLocation: http://127.0.0.1:1/secret\r\nContent-Length: 0\r\n\r\n".to_string(),
+        ]);
         let result = tauri::async_runtime::block_on(fetch_capped(
             &http_client().unwrap(),
             &format!("{base}/a.gif"),
@@ -376,7 +378,10 @@ mod tests {
             &format!("{base}/big.gif"),
             1024,
         ));
-        assert!(matches!(result, Err(ClipboardError::TooLarge(_))), "{result:?}");
+        assert!(
+            matches!(result, Err(ClipboardError::TooLarge(_))),
+            "{result:?}"
+        );
     }
 
     #[test]

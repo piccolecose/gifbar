@@ -1,10 +1,9 @@
 ---
 name: Bug report
 about: Report any bugs you find
-title: ''
+title: ""
 labels: bug
-assignees: ''
-
+assignees: ""
 ---
 
 **Describe the bug**
@@ -17,12 +16,14 @@ A clear and concise description of what actually happened.
 A clear and concise description of what you expected to happen.
 
 **Steps to Reproduce**
- 1. Go to '...'
- 2. Click on '....'
- 3. Scroll down to '....'
- 4. See error
+
+1.  Go to '...'
+2.  Click on '....'
+3.  Scroll down to '....'
+4.  See error
 
 **Desktop/OS/version Info (please complete the following information):**
+
 - OS: (e.g. MacOS 10.1)
 - gifbar version: (e.g. 0.1)
 - downlaod type: (dmg or app)

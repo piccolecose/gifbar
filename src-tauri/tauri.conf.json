@@ -30,9 +30,7 @@
   },
   "plugins": {
     "updater": {
-      "endpoints": [
-        "https://github.com/joshghent/gifbar/releases/latest/download/latest.json"
-      ],
+      "endpoints": ["https://github.com/joshghent/gifbar/releases/latest/download/latest.json"],
       "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDU5MzdCNzY0MzQ5NDU0QjcKUldTM1ZKUTBaTGMzV2V2NnlkYzFqd3pvbVRyM1dtdzlhUXhVUGVSeFQ3ekNHa1VFWkU4WitlcXAK"
     }
   },
@@ -46,13 +44,7 @@
       "icons/icon.ico"
     ],
     "createUpdaterArtifacts": false,
-    "targets": [
-      "dmg",
-      "app",
-      "deb",
-      "appimage",
-      "nsis"
-    ],
+    "targets": ["dmg", "app", "deb", "appimage", "nsis"],
     "macOS": {
       "minimumSystemVersion": "10.15",
       "signingIdentity": "-"
@@ -65,10 +57,7 @@
     },
     "linux": {
       "deb": {
-        "depends": [
-          "libwebkit2gtk-4.1-0",
-          "libgtk-3-0"
-        ]
+        "depends": ["libwebkit2gtk-4.1-0", "libgtk-3-0"]
       }
     }
   }

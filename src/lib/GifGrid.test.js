@@ -87,9 +87,7 @@ describe("GifGrid", () => {
     await fireEvent.click(getAllByRole("button")[0]);
 
     await vi.waitFor(() => {
-      expect(writeText).toHaveBeenCalledWith(
-        "https://example.com/original/1.gif",
-      );
+      expect(writeText).toHaveBeenCalledWith("https://example.com/original/1.gif");
     });
     // The user still gets the "Copied!" confirmation — something did land.
     expect(oncopied).toHaveBeenCalledWith("gif-1");
