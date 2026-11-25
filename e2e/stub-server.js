@@ -3,10 +3,7 @@ import { createServer } from "node:http";
 export const PORT = 14318;
 const ORIGIN = `http://127.0.0.1:${PORT}`;
 
-const TINY_GIF = Buffer.from(
-  "R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
-  "base64",
-);
+const TINY_GIF = Buffer.from("R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7", "base64");
 
 const gif = (id, title) => ({
   id,
