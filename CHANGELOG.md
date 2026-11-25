@@ -1,5 +1,23 @@
 # Changelog
 
+## [2.3.3](https://github.com/piccolecose/gifbar/compare/v2.3.2...v2.3.3) (2026-11-25)
+
+
+### CI/CD
+
+* add conventional commits check to trigger release please ([#326](https://github.com/piccolecose/gifbar/issues/326)) ([61be673](https://github.com/piccolecose/gifbar/commit/61be673a1f2a0de18a81bca380ab0e370cacffdf))
+* lint, format check, coverage gate and Rust checks ([#322](https://github.com/piccolecose/gifbar/issues/322)) ([fedab2d](https://github.com/piccolecose/gifbar/commit/fedab2dc95a94e3c9ed23e7cac4e94685cb16033))
+
+
+### Tests
+
+* **e2e:** drive the built app with tauri-driver and WebdriverIO ([#323](https://github.com/piccolecose/gifbar/issues/323)) ([d714d57](https://github.com/piccolecose/gifbar/commit/d714d57c16f4caf4349348e5962936ea809a97b1))
+
+
+### Code Style
+
+* **e2e:** format stub-server.js so the oxfmt gate passes ([#325](https://github.com/piccolecose/gifbar/issues/325)) ([9196b38](https://github.com/piccolecose/gifbar/commit/9196b386b58d94839e9fe561b602b15c88745691))
+
 ## [2.3.2](https://github.com/piccolecose/gifbar/compare/v2.3.1...v2.3.2) (2026-11-23)
 
 
