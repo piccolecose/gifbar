@@ -1,0 +1,22 @@
+{
+  "app": {
+    "security": {
+      "csp": "default-src 'self'; img-src 'self' data: https://*.giphy.com https://*.tenor.com https://media.tenor.com https://media1.tenor.com http://127.0.0.1:14318; connect-src 'self' https://*.workers.dev https://github.com https://objects.githubusercontent.com http://127.0.0.1:14318; style-src 'self' 'unsafe-inline'",
+      "capabilities": [
+        "default",
+        {
+          "identifier": "e2e",
+          "description": "E2E build only: lets the specs show the hidden tray window",
+          "windows": ["main"],
+          "permissions": ["core:window:allow-show"]
+        }
+      ]
+    }
+  },
+  "plugins": {
+    "updater": {
+      "endpoints": ["http://127.0.0.1:14318/updater/latest.json"],
+      "dangerousInsecureTransportProtocol": true
+    }
+  }
+}
